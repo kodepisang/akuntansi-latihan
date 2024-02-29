@@ -46,5 +46,14 @@ function ActivityTransaksiKredit($user, $request)
         ->useLog('Post')
         ->event('store')
         ->withProperties(['date' => $date, 'user_name' => $user->name, 'user_id' => $user->id, 'email' => $user->email, 'role' => $user->role, 'flag' => 'kredit', 'description' => $request->description, 'amount' => $request->amount])
-        ->log('Transaksi kredit, add data');
+        ->log('Transaksi kredit, add data Api');
+}
+function ActivityTrasnsaksiListData($user)
+{
+    $date = date('Y-m-d H:i:s');
+    activity()
+        ->useLog('Get Data')
+        ->event('Get')
+        ->withProperties(['date' => $date, 'user_name' => $user->name, 'user_id' => $user->id, 'email' => $user->email, 'role' => $user->role])
+        ->log('Api Get Data Transaksi');
 }

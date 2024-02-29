@@ -98,6 +98,7 @@ class TransaksiController extends Controller
                     // 'debit' => $item->first()->debit
                 ];
             })->first();
+        ActivityTrasnsaksiListData($user);
         return response()->json([
             'status' => 'success',
             'data' => $result
