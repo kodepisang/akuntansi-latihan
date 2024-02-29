@@ -22,7 +22,7 @@ class ApiAuthController extends Controller
 
         $user = auth()->user();
         $token = $user->createToken('token')->plainTextToken;
-
+        ActivityLoginApi($user);
         return response()->json([
             'message' => 'success',
             'user' => $user,
@@ -39,7 +39,12 @@ class ApiAuthController extends Controller
     }
     public function logout()
     {
-        auth()->user()->tokens()->delete();
+        $user = auth()->user();
+        $user->tokens()->delete();
+        activity()
+            ->causedBy($user)
+            ->event('verified')
+            ->log('logout api');
         return response()->json([
             'message' => 'success logout'
         ]);

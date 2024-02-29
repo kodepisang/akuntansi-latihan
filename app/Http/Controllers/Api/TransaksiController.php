@@ -113,6 +113,7 @@ class TransaksiController extends Controller
                 'amount' => $request->amount,
                 'user_id' => $user_id
             ]);
+            ActivityTransaksiDebit($user, $request);
             return response()->json([
                 'message' => 'success',
                 'data' => $result
@@ -123,6 +124,7 @@ class TransaksiController extends Controller
                 'amount' => $request->amount,
                 'user_id' => $user_id
             ]);
+            ActivityTransaksiKredit($user, $request);
             return response()->json([
                 'message' => 'success',
                 'data' => $result

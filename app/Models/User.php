@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
@@ -43,12 +45,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // public function getActivitylogOptions(): LogOptions
+    // {
+    //     return LogOptions::defaults()
+    //     ->logOnly(['title', 'slug', 'content'])
+    //     ->setDescriptionForEvent(fn (string $eventName) => "This model has been {$eventName}")
+    //     ->useLogName('Post');
+    // }
+
     public function kredit()
     {
         return $this->hasMany(Kredit::class, 'user_id', 'id');
     }
+
     public function debit()
     {
         return $this->hasMany(Debit::class, 'user_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

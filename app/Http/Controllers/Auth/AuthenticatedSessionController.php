@@ -31,9 +31,15 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
+        ActivityLoginWeb($request);
+        // $date = date('Y-m-d H:i:s');
+        // activity()
+        //     ->useLog('Login')
+        //     ->causedBy($request->user())
+        //     ->event('verified')
+        //     ->withProperties(['date' => $date, 'ip' => $request->ip()])
+        //     ->log('login with web');
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
@@ -42,12 +48,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+        $date = date('Y-m-d H:i:s');
+        ActivityLogOutWeb($user, $request);
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }
