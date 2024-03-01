@@ -22,7 +22,7 @@ export default function Register() {
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
+        // console.log(route('register'))
         post(route('register'));
     };
 
