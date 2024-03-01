@@ -33,13 +33,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
         ActivityLoginWeb($request);
-        // $date = date('Y-m-d H:i:s');
-        // activity()
-        //     ->useLog('Login')
-        //     ->causedBy($request->user())
-        //     ->event('verified')
-        //     ->withProperties(['date' => $date, 'ip' => $request->ip()])
-        //     ->log('login with web');
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

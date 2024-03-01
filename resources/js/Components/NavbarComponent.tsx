@@ -29,8 +29,9 @@ interface Props {
 }
 
 const Links = [
-    { name: "Dashboard", href: "/dashboard" },
-    { name: "Project", href: "/project" },
+    { name: "Dashboard", href: "/dashboard", role: ['admin', 'user'] },
+    { name: "Project", href: "/project", role: ['admin', 'user'] },
+    { name: "Activity", href: "/activity", role: ['admin'] },
 ]
 
 const NavLink = (props: Props) => {
@@ -74,9 +75,13 @@ const NavbarComponents = ({ user, children }: PropsWithChildren<{ user: User }>)
                             <LottieComponents height={50} width={50} animationData={lego} loop={true} />
                         </Box>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-                            {Links.map((link, index) => (
-                                <NavLink key={index} href={link.href}>{link.name}</NavLink>
-                            ))}
+                            {Links.map((link, index) => {
+                                const groupRole = link.role;
+                                const role = user.rule;
+                                if (groupRole.includes(role)) {
+                                    return <NavLink key={index} href={link.href}>{link.name}</NavLink>
+                                }
+                            })}
                         </HStack>
                     </HStack>
                     <Flex alignItems={'center'}>
@@ -111,9 +116,14 @@ const NavbarComponents = ({ user, children }: PropsWithChildren<{ user: User }>)
                 {isOpen ? (
                     <Box pb={4} display={{ md: 'none' }}>
                         <Stack as={'nav'} spacing={4}>
-                            {Links.map((link, index) => (
-                                <NavLink key={index} href={link.href}>{link.name}</NavLink>
-                            ))}
+                            {Links.map((link, index) => {
+                                const groupRole = link.role;
+                                const role = user.rule;
+                                if (groupRole.includes(role)) {
+                                    return <NavLink key={index} href={link.href}>{link.name}</NavLink>
+                                }
+
+                            })}
                         </Stack>
                     </Box>
                 ) : null}

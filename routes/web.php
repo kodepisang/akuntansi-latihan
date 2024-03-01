@@ -4,6 +4,7 @@ use App\Events\MessageCreated;
 use App\Http\Controllers\FirstPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\ActivityController;
 use App\Http\Controllers\Web\ProjectController;
 use App\Http\Controllers\Web\TransaksiController;
 use Illuminate\Foundation\Application;
@@ -36,11 +37,15 @@ Route::get('/', [FirstPageController::class, 'index']);
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:user,admin'])->group(function () {
     Route::get('/dashboard', [TransaksiController::class, 'index'])->name('dashboard.index');
     Route::delete('/dashboard/debit/{id}', [TransaksiController::class, 'destroyDebit'])->name('dashboard.destroyDebit');
     Route::delete('/dashboard/kredit/{id}', [TransaksiController::class, 'destroyKredit'])->name('dashboard.destroyKredit');
     Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
+});
+
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('/activity', [ActivityController::class, 'index'])->name('activity.index');
 });
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
