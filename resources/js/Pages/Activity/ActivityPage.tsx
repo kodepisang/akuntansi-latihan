@@ -95,7 +95,6 @@ const AvtivityPage = ({ auth, data }: PageProps<{ data: any }>) => {
                 window.location.reload();
             }, 5000); // Reloads page every 5 seconds
         }
-
         // Cleanup function to clear the interval when the component unmounts or when auto-refresh is turned off
         return () => clearInterval(timer!);
     }, [isAutoRefresh])
@@ -129,7 +128,7 @@ const AvtivityPage = ({ auth, data }: PageProps<{ data: any }>) => {
                 <VStack spacing={4} align='center'>
 
                     {actyvityData.map((item: any, index: number) => {
-                        // console.log(item);
+                        console.log(item);
                         return <TestimonialCard key={index}
                             userName={item.user.name} logName={item.log_name}
                             description={item.description} role={item.user.rule}

@@ -19,12 +19,11 @@ function ActivityLoginWeb($request)
         ->withProperties(['date' => $date, 'ip' => $request->ip()])
         ->log('login with web');
 }
-function ActivityRegisterWeb($request)
+function ActivityRegisterWeb($request, $user)
 {
     $date = date('Y-m-d H:i:s');
     activity()
         ->useLog('Register')
-        ->causedBy($request->user())
         ->event('Store')
         ->withProperties(['date' => $date, 'name' => $request->name])
         ->log('Register with web');

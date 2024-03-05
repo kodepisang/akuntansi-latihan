@@ -42,11 +42,14 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        ActivityRegisterWeb($request);
+
+        // dd($user);
+
         event(new Registered($user));
 
         Auth::login($user);
-
+        $userData = auth()->user();
+        ActivityRegisterWeb($request, $userData);
         return redirect(RouteServiceProvider::HOME);
     }
 }
