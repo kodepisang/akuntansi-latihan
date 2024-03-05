@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
-
+ 
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -64,3 +64,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Usage
+
+To use Laravel, follow these steps:
+
+1. Install Composer dependencies by running `composer install`.
+2. Install NPM dependencies by running `npm install`.
+3. Set up your database connection in the `.env` file.
+4. Run database migrations by running `php artisan migrate`.
+5. Start the development server by running `php artisan serve`.
+
+Enjoy using Laravel for your web development projects!
