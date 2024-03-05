@@ -67,7 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Usage
 
-To use Laravel, follow these steps:
+To use Laravel with Inertia.js and TypeScript, follow these steps:
 
 1. Install Composer dependencies by running `composer install`.
 2. Install NPM dependencies by running `npm install`.
@@ -75,4 +75,4 @@ To use Laravel, follow these steps:
 4. Run database migrations by running `php artisan migrate`.
 5. Start the development server by running `php artisan serve`.
 
-Enjoy using Laravel for your web development projects!
+Enjoy using Laravel with Inertia.js and TypeScript for your web development projects!
